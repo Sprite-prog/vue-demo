@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <parent></parent>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component(
+            'child',
+            {
+                template:`<div style="background-color:yellow">
+                    <p @click="handleClick">子组件</p>
+                    </div>`,
+                data(){
+                    return {
+                        aaa:"aaaaaaa",
+                        bbb:"bbbbbbb",
+                    }
+                },
+                methods:{
+                    handleClick(){
+                        // console.log("111");
+                        this.$emit("message",this.aaa,this.bbb);
+                    }
+                }
+            }
+        )
+        Vue.component(
+            'parent',
+            {
+                template:`<div style="background-color:blue">
+                    <p>父组件</p>
+                    <child @message="toshow"></child>
+                    </div>`,
+                data(){
+                    return{
+                        val:"",
+                    }
+                },
+                methods:{
+                    toshow(val1,val2){
+                        console.log(val1,val2);
+                    }
+                }
+            }
+        )
+        var vm=new Vue({
+            el:"#box",
+        })
+    </script>
+</body>
+</html>

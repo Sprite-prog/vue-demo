@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.like{
+				opacity:0.5;
+				pointer-events: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<like></like>
+		</div>
+		<template id="dz">
+			<div id="">
+				<button @click="hit" :class="{'like':like}">点赞{{count}}</button>
+			    <p>点赞数量{{count}}</p>
+			</div>
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{},
+				components:{
+					like:{
+						template:'#dz',
+						data(){
+							return{
+								count:0,
+								like:false,
+							}
+						},
+						methods:{
+							hit(){
+								this.count++;
+								this.like=true;
+							}
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			{{messge}}
+			<mydiv @add="adda" @jian="adda"></mydiv>
+		</div>
+		<template id="mydiv">
+			<div>
+				<button @click="add">+1</button>
+			    <button @click="jian">-1</button>
+			</div>
+			
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component("mydiv",{
+				template:"#mydiv",
+				data(){
+					return{
+						count:0,
+					}
+				},
+				methods:{
+					add(){
+						this.count++;
+						this.$emit("add",this.count);
+					},
+					jian(){
+						this.count--;
+						this.$emit("jian",this.count);
+					}
+				}
+			})
+			var app=new Vue({
+				el:'#app',
+				data:{
+					messge:0,
+				},
+				methods:{
+					adda(msg){
+						this.messge=msg;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

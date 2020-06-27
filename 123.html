@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<div id="app">
+			<p>{{msg}}</p>
+			<button v-on:click="msg='今天天气好热啊'">点击改变内容</button>
+			<button @click="counter++">点击自增+1</button>点击次数{{counter}}
+			<button @click="changeContent()">点击改变</button>
+		</div>
+		<script src="js/vue.js"></script>
+		<script type="text/javascript">
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					msg:"今天天气晴",	
+					counter:0
+				},
+				methods:{
+					//：function可省略
+					changeContent(){
+						//alert(0)
+						//this指向当前vue实例vm
+						this.msg="测试改变";
+					}
+				}
+			})
+		</script>
+</html>

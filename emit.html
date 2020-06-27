@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Zuo Yan"/>
+		<meta name="viewport" content="width=device-width"/>
+		<title>7-3-2</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+			<component-a @qmessage="getmsg"></component-a>
+		</div>
+		<script>
+			Vue.component('component-a',{
+				template: '<button @click="handleEvent()">传递事件</button>',
+				methods: {
+					handleEvent: function(){
+						this.$emit('qmessage','来自组件component-a的内容');
+					}
+				}
+			});
+			var app= new Vue({
+				el: '#app',
+				data: {
+					message: 'qqqq'
+				},
+				methods:{
+					getmsg(msg){
+						this.message=msg;
+					}
+					
+				}
+//				
+			});
+		</script>
+	</body>
+</html>

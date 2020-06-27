@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="shop">
+        <table border="1px" cellspacing="0">
+            <tr>
+                <th><input type="checkbox" v-model="checked" @click="select"></th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>数量</th>
+            </tr>
+            <tr v-for="shop in shops">
+                <td><input type="checkbox" v-model="shop.isChecked"></td>
+                <td>{{shop.name}}</td>
+                <td>{{shop.price}}元</td>
+                <td><button @click="jian">-</button>{{shop.number}}<button @click="shop.number++">+</button></td>
+            </tr>
+            <tr>
+                <td colspan="4">总金额：{{sum}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#shop",
+            data:{
+                shops:[{
+                    name:"洗衣机",
+                    price:"120",
+                    number:"0",
+                    isChecked:false,
+                },
+                {
+                    name:"洗衣机",
+                    price:"120",
+                    number:"0",
+                    isChecked:false,
+                },
+                {
+                    name:"洗衣机",
+                    price:"120",
+                    number:"0",
+                    isChecked:false,
+                }],
+                checked:false,
+            },
+            methods:{
+                select(){
+                    if (this.checked==true) {
+                        for(j=0;j<this.shops.length;j++)
+                        {
+                            this.shops[j].isChecked=true;
+                        }
+                    } else {
+                        for(k=0;k<this.shops.length;k++){
+                            this.shops[k].isChecked=false;
+                        }
+                    }
+                },
+                jian(){
+                    for(var x=0;x<this.shops.length;x++){
+                        this.shops[x].number--;
+                        if(this.shops[x].number<0){
+                            this.shops[x].number=0;
+                            return this.shops[x].number;
+                        }
+                    }
+                }
+            },
+            computed:{
+                sum(){
+                    var sum=0;
+                    for(i=0;i<this.shops.length;i++){
+                        if(this.shops[i].isChecked==true)
+                        sum+=this.shops[i].number*this.shops[i].price;
+                    }
+                    return sum;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

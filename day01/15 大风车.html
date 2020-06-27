@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>无标题文档</title>
+	<style>
+		.all {
+			width: 400px;
+			height: 400px;
+			border: 2px solid #ccc;
+		}
+
+		.all div {
+			float: left;
+		}
+
+		.all div:nth-child(1),
+		.all div:nth-child(4) {
+			height: 100px;
+			width: 200px;
+			background: #ff0;
+		}
+
+		.all div:nth-child(1) {
+			margin-top: 100px;
+			border-radius: 100px 100px 0 0;
+		}
+
+		.all div:nth-child(2),
+		.all div:nth-child(3) {
+			height: 200px;
+			width: 100px;
+			background: #0f0;
+		}
+
+		.all div:nth-child(3) {
+			margin-left: 100px;
+			border-radius: 100px 0 0 100px
+		}
+
+		.all div:nth-child(2) {
+			border-radius: 0 100px 100px 0
+		}
+
+		.all div:nth-child(4) {
+			border-radius: 0 0 100px 100px
+		}
+	</style>
+</head>
+
+<body>
+	<!-- border-radius也可以带四个参数，并且以顺时针的方向解析，上左，上右，下右，下左： -->
+	<div class="all">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+	</div>
+
+</body>
+
+</html>

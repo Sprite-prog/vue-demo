@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<person></person>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component('person',{
+				template:`<div><button>点我</button><p>点我看看</p></div>`,
+				
+			})
+			var app=new Vue({
+				el:'#app',
+				data:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>

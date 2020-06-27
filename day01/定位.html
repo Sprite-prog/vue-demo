@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .all{
+            width: 200px;
+            height: 100px;
+            position: relative;
+            margin-left: 100px;
+        }
+        .all div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        .box1{
+            left: 0;
+        }
+        .box2{
+            left: 100px;
+        }
+        .all>div>img{
+            width: 100px;
+            height: 100px;
+        }
+        .all>img{
+            width: 200px;
+            height: 100px;
+        }
+        .all div{
+            transition: all 1.5s  linear 0s;
+        }
+        .all:hover .box1{
+             left:-100px;
+        }
+        .all:hover .box2{
+             left:200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="box1"><img src="img/1.jpg" alt=""></div>
+        <div class="box2"><img src="img/2.jpg" alt=""></div>
+        <img src="img/2.png" alt="">
+    </div>
+</body>
+</html>

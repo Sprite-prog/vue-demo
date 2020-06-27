@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<hello></hello>
+		</div>
+		<template id="mycomponent">
+			<div>
+				<button @click="hit">点我</button>
+				<p>点我看看</p>
+		    </div>
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component('hello',{
+				template:'#mycomponent',
+				methods:{
+					hit(){
+						alert("我被点了");
+					}
+				}
+			})
+			var app=new Vue({
+				el:'#app',
+				data:{
+					
+				},
+			});
+		</script>
+	</body>
+</html>

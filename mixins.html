@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Zuo Yan"/>
+		<meta name="viewport" content="width=device-width"/>
+		<title>混合器</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			.pop{
+				width:200px;
+				height: 100px;
+				background: pink;
+				padding: 20px;
+			}
+			.close{
+				position: relative;
+				top:-20px;
+				left:200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<tooltip></tooltip><br />
+			<pop></pop>
+		</div>
+	    <template id="pop">
+	    	<div>
+	    		<button @click="toggle">弹窗</button>
+	    	    <div v-show='visible' class="pop">
+	    	    	<span class='close'><a href="" @click="hide">X</a></span>
+	    		这是弹出窗口里的内容。
+	    	    </div>
+	    	</div>
+	    	
+	    </template>
+	    <template id="tooltip">
+	    	<div>
+	    		<a href="" @mouseover="show" @mouseout="hide"><span id="">下方提示</span></a>
+	    	<div v-if="visible">
+	    		这是提示框里的内容。
+	    	</div>
+	    	</div>
+	    	
+	    </template>
+		<script>
+			Vue.component('pop',{
+				template:'#pop',
+				data:function(){
+					return{
+						visible:false,
+					}
+				},
+				methods:{
+					toggle:function(){
+						this.visible=!this.visible;
+					},
+					hide:function(){
+						this.visible=false;
+					}
+				}
+			});
+			Vue.component('tooltip',{
+				template:'#tooltip',
+				data:function(){
+					return{
+						visible:false,
+					}
+				},
+				methods:{
+					show:function(){
+					this.visible=true;
+				},
+				    hide:function(){
+					this.visible=false;
+				}
+				}
+				
+			})
+			var app= new Vue({
+				el: '#app',
+				data: {
+					price: 10
+				},
+			
+//				
+			});
+		</script>
+	</body>
+</html>

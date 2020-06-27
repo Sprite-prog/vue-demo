@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.panel{
+				width: 300px;
+				border: solid 1px gray;
+				margin-bottom: 10px;
+			}
+			.panel h3{
+				color:red;
+			}
+			.panel .head{
+				border-bottom: solid 1px gray;
+			}
+			.panel .footer{
+				border-top:solid 1px gray;
+			}
+			.panel>*{
+				padding: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<panel-tpl>
+				<div slot="header">
+					wo
+				</div>
+				<div slot="conter">123</div>
+				<div slot="footer">456</div>
+			</panel-tpl>
+			<panel-tpl>
+				<div slot="conter">22222</div>
+			</panel-tpl>
+			<panel-tpl>
+				<div slot="conter">33333</div>
+			</panel-tpl>
+		</div>
+		<template id="pl">
+			<div class="panel">
+			    <div class="head">
+			    	<slot name="header">title</slot>
+			    </div>
+			    <div class="content">
+			     <slot name="conter">conter</slot>
+			    </div>
+			    <div class="footer">
+			    	<slot name="footer">更多信息</slot>
+			    </div>
+			    	
+			    </div>
+			</div>
+		</template>
+		
+		<script type="text/javascript">
+	
+		Vue.component('panel-tpl',{
+			template:'#pl',
+			data:function(){
+				return{
+					message:'',
+				}
+			},
+		    
+		});
+			
+	var app=new Vue({
+	el:"#app",
+	data:{
+
+	},
+	});
+
+		</script>
+	</body>
+</html>

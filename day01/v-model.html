@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="mytext">{{mytext}}<br>
+        <input type="checkbox" v-model="check">记住我{{check}}<br>
+        <input type="checkbox" v-model="checkgroup" value="c">c<br>
+        <input type="checkbox" v-model="checkgroup" value="java">java<br>
+        <input type="checkbox" v-model="checkgroup" value="html">html<br>
+        {{checkgroup}}<br>
+        <input type="radio" value="vue" v-model="radio">vue<br>
+        <input type="radio" value="react" v-model="radio">react<br>
+        {{radio}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#box",
+            data:{
+                mytext:"",
+                check:true,
+                checkgroup:[],
+                radio:"vue",
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+    <style>
+    .aaa{
+        font-size: 20px;
+
+    }    
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <img :src="'img/'+img" alt="">
+        <p :style="bbb">
+            123456
+        </p>
+        <p :class="myclass">
+            123456
+        </p>
+        <div v-if="isIf==='true'">我是v-if</div>
+        <div v-else>我是v-else</div>
+        <button @click="clickif()">隐藏if</button>
+        <div v-show="isShow">我是v-show</div>
+        <button @click="clickshow">隐藏show</button>
+        <table>
+            <tr>
+                <th>姓名</th>
+            </tr>
+            <tr  v-for="na in name">
+                <td>
+                    {{na.name}}
+                </td>
+            </tr>
+        </table>
+        <button @click="a++">add a</button>
+        <button @click="b++">add b</button>
+        <div>a:{{a}}</div>
+        <div>b:{{b}}</div>
+        <!-- <div>age+a={{suma}}</div>
+        <div>age+b={{sumb}}</div> -->
+        <div>methods</div>
+        <div>age+a={{suma()}}</div>
+        <div>age+b={{sumb()}}</div>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                myhtml:"<b>hello</b>",
+                img:"1.jpg",
+                bbb:{
+                    fontSize:"20px",
+                },
+                myclass:"aaa",
+                isShow:true,
+                isIf:"true",
+                a:0,
+                b:0,
+                age:20,
+                name:[{
+                    name:"123",
+                },
+                {
+                    name:"234",
+                },
+                {
+                    name:"456",
+                }]
+            },
+            methods:{
+                clickif(){
+                    if (this.isIf=='true') {
+                        return this.isIf="false";
+                    } else {
+                        return this.isIf="true";
+                    }
+                },
+                clickshow(){
+                    return this.isShow=false;
+                },
+                suma(){
+                    console.log("add to a");
+                    return this.age+this.a;
+                },
+                sumb(){
+                    console.log("add to b");
+                    return this.age+this.b;
+                }
+            },
+            computed:{
+                suma(){
+                    console.log("add to a");
+                    return this.age+this.a;
+                },
+                sumb(){
+                    console.log("add to b");
+                    return this.age+this.b;
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

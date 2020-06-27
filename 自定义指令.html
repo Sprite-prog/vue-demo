@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+			#card1{
+				width: 200px;
+				height: 100px;
+				background: pink;
+				margin-bottom: 0.2rem;
+			}
+				#card2{
+				width: 200px;
+				height: 100px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="card1" v-pin='card1.pinned'>
+				<button @click="card1.pinned=!card1.pinned">钉住/取消</button>
+				我是card1的内容。{{card1.pinned}}
+			</div>
+			<div id="card2" v-pin='card2.pinned'>
+				<a @click="card2.pinned=!card2.pinned" href="#" >钉住/取消</a>
+				我是card2的内容。
+				{{card2.pinned}}
+			</div>
+			
+		</div>
+
+		<script type="text/javascript">
+	Vue.directive('pin',function(el,binding){
+	
+		var pinned=binding.value;
+		if(pinned){
+			el.style.position='fixed';
+			el.style.left='10px';
+			el.style.bottom='10px';
+		}			
+	
+else{
+			el.style.position='static';
+		}
+		
+	})
+	var app=new Vue({
+	el:"#app",
+	data:{
+      card1:{
+      	pinned:false,
+      },
+      card2:{
+      	pinned:false,
+      }
+	},
+	});
+
+		</script>
+	</body>
+</html>

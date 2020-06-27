@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<mydiv msg="今天天气晴朗" imgsrc="./img/1.jpg"></mydiv>
+			<mydiv msg="今天天气阴" imgsrc="./img/2.jpg"></mydiv>
+			<mydiv msg="今天天气。。。" imgsrc="./img/3.jpg"></mydiv>
+		</div>
+		<template id="mydiv">
+			<div>
+				<h3>{{msg}}</h3>
+				<img :src="imgsrc" width="200px" height="200px"/>
+			</div>
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				components:{
+					mydiv:{
+						template:'#mydiv',
+						props:['msg','imgsrc'],
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

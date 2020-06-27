@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-model指令</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" name="" id="" value="" v-model.lazy="name"/>
+			<p>{{name}}</p>
+			<p>性别：</p>
+			<lable>男
+			<input type="radio" v-model="sex" id="" value="male" />
+			</lable>
+			
+			<lable>女
+			<input type="radio" v-model="sex" id="" value="female" />
+			</lable><br />
+			{{sex}}
+			<p>爱好：</p>
+			<lable>读书
+			<input type="checkbox" v-model="love" id="" value="read" />
+			</lable>
+			
+			<lable>写字
+			<input type="checkbox" v-model="love" id="" value="write" />
+			</lable><br />
+			{{love}}
+			<p>你来自哪里？</p>
+			<select v-model="from">
+				<option value="1">大连</option>
+				<option value="2">沈阳</option>
+				<option value="3">北京</option>
+			</select>
+			{{from}}
+			<p>你到哪里去？</p>
+			<select v-model="goto" multiple>
+				<option value="1">大连</option>
+				<option value="2">沈阳</option>
+				<option value="3">北京</option>
+			</select>
+			{{goto}}
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					name:null,
+					sex:null,
+					love:[],
+					from:"",
+					goto:"",
+				}
+			})
+		</script>
+	</body>
+</html>

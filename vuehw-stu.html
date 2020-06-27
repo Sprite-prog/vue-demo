@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			[v-cloak]{
+				display: none;
+			}
+			fieldset{
+				width:600px;
+				border: 1px solid orangered;
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			fieldset input{
+				width:200px;
+				height: 30px;
+				margin: 10px 0;
+			}
+			fieldset button{
+				width:100px;
+				height: 30px;
+				margin-top: 10px;
+			}
+			table{
+				width:620px;
+				border: 1px solid red;
+				text-align: center;
+			}
+			thead{
+				background-color:red;
+			}
+		</style>
+	</head>
+	<div id="app" v-cloak>
+		<!--第一部分-->
+
+		<fieldset id="">
+			<legend>学生录入系统</legend>
+			<div>
+				<span>姓名：</span>
+				<input type="text" name="" id="" value="" placeholder="请输入姓名" v-model="newStudent.name"/>
+			</div>
+			<div>
+				<span>年龄：</span>
+				<input type="text" name="" id="" value="" placeholder="请输入年龄" v-model="newStudent.age"/>
+			</div>
+			<div>
+				<span>性别：</span>
+				<select name="" id="" v-model="newStudent.sex">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+			</div>
+			<button @click="creatNewstudent()">创建新用户</button>
+				
+		</fieldset>
+		<!--第二部分-->
+			<table border="" cellspacing="0" cellpadding="">
+				<thead>
+					<tr>
+						<td>姓名</td>
+						<td>年龄</td>
+						<td>性别</td>
+		                <td>成绩</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr v-for="(student,index) in students">
+						<td>{{student.name}}</td>
+						<td>{{student.age}}</td>
+						<td>{{student.sex}}</td>
+						<td><input type="text" name="" id="" value="" v-model.number="student.score" /></td>
+						<td>{{index}}<button @click="deleteStudent(index)">删除</button></td>
+					</tr>
+					<tr>
+						<td colspan="5" style="text-align: left;">学生的平均分:{{avg}}</td>
+					</tr>
+				</tbody>
+			
+			</table>
+		按姓名搜索：<input type="text" v-model="search"/>
+		<button @click="filteredStudents()">搜索</button>
+		</div>
+		<script src="js/vue.js"></script>
+		<script type="text/javascript">
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					students:[
+					  {name:"张三",age:"20",sex:"男",score:90},
+					  {name:"李四",age:"22",sex:"男",score:70},
+					  {name:"王五",age:"21",sex:"女",score:80},
+					  {name:"赵四",age:"20",sex:"女",score:60},
+					],
+					newStudent:{name:"",age:0,sex:"男"},
+					search:""
+				},
+				methods:{
+					creatNewstudent(){
+						//alert(0);
+						//姓名不能为空
+						if(this.newStudent.name===""){
+							alert("姓名不能为空");
+							return;
+						}
+						//年龄不能小于10
+						if(this.newStudent.age<10){
+							alert("年龄不能小于10");
+							return;
+						}
+						//往数组中添加一个新记录
+						this.students.unshift(this.newStudent);
+						//清空数据
+						this.newStudent={name:"",age:0,sex:"男"}
+					},
+					//删除一条学生记录
+				deleteStudent(index){
+					this.students.splice(index,1);//删除下标是index的1个元素
+				},
+				filteredStudents(){
+						search=this.search;
+						//alert(search);
+					vm.students=this.students.filter(function(item){
+							return item.name.match(search);
+						});
+				}
+				},
+				computed:{
+					avg(){
+						var sum=0;
+						for (i=0;i<this.students.length;i++) {
+							sum+=this.students[i].score;
+						}
+						return sum/this.students.length;
+					}
+				},
+				
+				
+			})
+		</script>
+</html>

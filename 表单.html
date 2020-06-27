@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#add{
+				border: 1px solid red;
+			}
+			#add span{
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="add">
+				<span>学生录入系统</span>
+				<form action="">
+					姓名：<input type="text" v-model="adda.name"/><br />
+					年龄：<input type="text" v-model="adda.age"/><br />
+					性别：<select v-model="adda.sex">
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+					<br />
+					<button @click.prevent="add()">创建新用户</button>
+				</form>
+			</div>
+			<table border="1px" cellspacing="" cellpadding="">
+			<thead>
+				<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>操作</th>
+			    </tr>
+			</thead>
+			<tbody id="tbody">
+				<tr v-for="(pe,index) in people">
+					<td>{{pe.name}}</td>
+					<td>{{pe.age}}</td>
+					<td>{{pe.sex}}</td>
+				    <td><button @click="del(index)">删除</button></td>
+			   </tr>
+			</tbody>
+		    </table>
+		    按姓名搜索：<input type="text" v-model="search"/>
+		    <button @click="ser()">搜索</button
+					
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				
+				data:{
+					search:"",
+					adda:{
+						name:"",
+					    age:null,
+					    sex:"男",
+					},
+					people:[{
+						name:"张三",
+					    age:22,
+					    sex:"男",
+					},
+					{
+						name:"李四",
+					    age:22,
+					    sex:"男",
+					}]
+				},
+				methods:{
+					add(){
+						this.people.unshift(this.adda);
+						this.adda={name:"",
+					    age:null,
+					    sex:"男"};
+					},
+					del(index){
+						this.people.splice(index, 1);
+					},
+					ser(){
+						search=this.search;
+						//alert(search);
+					app.people=this.people.filter(function(item){
+							return item.name.match(search);
+						});
+				}
+
+					
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<person msg="点我干啥"></person>
+			<person msg="点开看看"></person>
+			<person msg="别点我"></person>
+		</div>
+		<template id="mycomponent">
+			<div><button @click="said">点我{{count}}</button><p>{{msg}}</p></div>
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			Vue.component('person',{
+//				template:'#mycompontent',
+//				
+//			})
+			var app=new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				components:{
+					person:{
+						template:'#mycomponent',
+						props:["msg"],
+						methods:{
+							said()
+							{
+								alert(this.msg);
+							}
+						},
+						data()
+						{
+							return{
+								//msg:"点我看看",
+								count:0,
+							}
+						}
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<zhangsan></zhangsan>
+			<lisi></lisi>
+		</div>
+		<template id="zs">
+			<div id="">
+				张三说：<input type="text" v-model="messge" @keyup="onchange"/>
+			</div>
+			
+		</template>
+		<template id="ls">
+			<div id="">
+				<p>{{msg}}</p>
+			</div>
+			
+		</template>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var bus=new Vue();
+			Vue.component('zhangsan',{
+				template:"#zs",
+				data(){
+					return{
+						messge:"",
+					}
+				},
+				methods:{
+					onchange(){
+						bus.$emit("zss",this.messge);
+					}
+				}
+				
+			});
+			Vue.component('lisi',{
+				template:"#ls",
+				data(){
+					return{
+						msg:"",
+					}
+				},
+				mounted(){
+					var me=this;
+					bus.$on('zss',function(data){
+						me.msg=data;
+					})
+				}
+			});
+			var app=new Vue({
+				el:'#app',
+				data:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+ 1.npm install vue-cli -g
+ 2.vue init webpack vue-demo
+ 3.cd 到文件夹下
+ 4.npm install
+ 5.npm run dev
+
+
+
+回退 ctrl+c 两次
